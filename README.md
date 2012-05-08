@@ -9,13 +9,13 @@ Open the graphite/graphite-install.sh file and set GRAPHITE_DIR to the path of y
 
 * No need for Ruby
 * Integrates into your existing Graphite installation
-* You don't need to create dashboard javascript files if you don't want.  Simply create a graph in graphite composer and get your URL: http://graphite_url/render/?target=alias(some.stat%2C%22stat1_alias%22)&target=some.stat.no.alias and then just replace "render" with "tasseo" so your new URL is http://graphite_url/tasseo/?target=alias(some.stat%2C%22stat1_alias%22)&target=some.stat.no.alias
-** you can also add some additional parameters into the URL that will affect all the graphs:
-*** unit=%
-*** warning=X
-*** critical=Y
-*** if your targets are defined with an alias() function then tasseo will use the alias name otherwise it will just use the stat name
-* Tasseo javascript dashboards are still supported, just put them into $GRAPHITE_DIR/content/tasseo/d
+* You don't need to create dashboard javascript files if you don't want.  Simply create a graph in graphite composer and get your URL: `http://graphite_url/render/?target=alias(some.stat%2C%22stat1_alias%22)&target=some.stat.no.alias` and then just replace `render` with `tasseo` so your new URL is `http://graphite_url/tasseo/?target=alias(some.stat%2C%22stat1_alias%22)&target=some.stat.no.alias`
+    * you can also add some additional parameters into the URL that will affect all the graphs:
+        * unit=%
+        * warning=X
+        * critical=Y
+        * if your targets are defined with an alias() function then tasseo will use the alias name otherwise it will just use the stat name
+* Tasseo javascript dashboards are still supported, just put them into `$GRAPHITE_DIR/content/tasseo/d`
 
 
 # Original Tasseo README below:
