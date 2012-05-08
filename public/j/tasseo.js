@@ -1,3 +1,5 @@
+var defaultPeriod = (typeof defaultPeriod == 'undefined') ? 5 : defaultPeriod;
+var imagePath = (typeof imagePath == 'undefined') ? '/i/' : imagePath;
 
 // add our containers
 for (var i=0; i<metrics.length; i++) {
@@ -10,7 +12,7 @@ var urls = [];     // graphite urls
 var aliases = [];  // alias strings
 
 // minutes of data in the live feed
-var period = (typeof period == 'undefined') ? 5 : period;
+var period = (typeof period == 'undefined') ? defaultPeriod : period;
 
 // construct a url
 function constructUrl(index, period) {
@@ -125,9 +127,9 @@ refreshData();
 for (var g=0; g<graphs.length; g++) {
   if (metrics[g].target === false) {
   } else if (myTheme === "dark") {
-    $('.overlay-number' + g).html('<img src="/i/spin-night.gif" />');
+    $('.overlay-number' + g).html('<img src="'+imagePath+'spin-night.gif" />');
   } else {
-    $('.overlay-number' + g).html('<img src="/i/spin.gif" />');
+    $('.overlay-number' + g).html('<img src="'+imagePath+'spin.gif" />');
   }
 }
 
@@ -220,7 +222,7 @@ $('#toolbar ul li.timepanel a.range').click(function() {
 // time panel, resume live feed
 $('#toolbar ul li.timepanel a.play').click(function() {
   for (var p=0; p<metrics.length; p++) {
-    constructUrl(p, 5);
+    constructUrl(p, defaultPeriod);
   }
   $(this).parent('li').parent('ul').find('li').removeClass('selected');
   $(this).parent('li').addClass('selected');
