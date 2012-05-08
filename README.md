@@ -14,6 +14,7 @@ Open the graphite/graphite-install.sh file and set GRAPHITE_DIR to the path of y
         * unit=%
         * warning=X
         * critical=Y
+        * default_period=Z :: where Z is in minutes
         * if your targets are defined with an alias() function then tasseo will use the alias name otherwise it will just use the stat name
 * Tasseo javascript dashboards are still supported, just put them into `$GRAPHITE_DIR/content/tasseo/d`
 
