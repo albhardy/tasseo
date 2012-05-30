@@ -116,13 +116,28 @@ div#nav {
   color: red;
 }
 
-#graph {
+#graph, #false {
   position: relative;
   float: left;
   padding: 10px;
   margin: 10px;
 }
 
+#false {
+  width: 350px;
+  height: 104px;
+}
+
+#graph svg {
+  border-left: 1px dotted #ddd;
+  border-right: 1px dotted #ddd;
+}
+
+.night #graph svg {
+  border-left: 1px dotted #333;
+  border-right: 1px dotted #333;
+}
+  
 #overlay-name {
   position: absolute;
   font-size: 24px;
