@@ -25,8 +25,6 @@ function gatherRealMetrics() {
 // build our graph objects
 function constructGraphs() {
   for (var i=0; i<realMetrics.length; i++) {
-    console.log(metrics[i]);
-    console.log(realMetrics[i]);
     aliases[i] = realMetrics[i].alias || realMetrics[i].target;
     datum[i] = [{ x:0, y:0 }];
     graphs[i] = new Rickshaw.Graph({
@@ -73,17 +71,17 @@ function refreshData(immediately) {
       var warning = realMetrics[i].warning;
       var critical = realMetrics[i].critical;
       if (critical > warning) {
-        if (lastValue > critical) {
+        if (lastValue >= critical) {
           graphs[i].series[0].color = '#d59295';
-        } else if (lastValue > warning) {
+        } else if (lastValue >= warning) {
           graphs[i].series[0].color = '#f5cb56';
         } else {
           graphs[i].series[0].color = '#afdab1';
         }
       } else {
-        if (lastValue < critical) {
+        if (lastValue <= critical) {
           graphs[i].series[0].color = '#d59295';
-        } else if (lastValue < warning) {
+        } else if (lastValue <= warning) {
           graphs[i].series[0].color = '#f5cb56';
         } else {
           graphs[i].series[0].color = '#afdab1';
@@ -207,8 +205,11 @@ constructUrl(period);
 var myTheme = (typeof theme == 'undefined') ? 'default' : theme;
 if (myTheme === "dark") { enableNightMode(); }
 
+// hide our toolbar if necessary
+var toolbar = (typeof toolbar == 'undefined') ? true : toolbar;
+if (!toolbar) { $('div#toolbar').css('display', 'none'); }
+
 // initial load screen
-refreshData();
 for (var i=0; i<graphs.length; i++) {
   if (realMetrics[i].target === false) {
     //continue;
@@ -218,6 +219,7 @@ for (var i=0; i<graphs.length; i++) {
     $('.overlay-number' + i).html('<img src="'+imagePath+'spin.gif" />');
   }
 }
+refreshData("now");
 
 // define our refresh and start interval
 var refreshInterval = (typeof refresh == 'undefined') ? 2000 : refresh;
